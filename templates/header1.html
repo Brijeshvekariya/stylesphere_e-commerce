@@ -76,10 +76,163 @@
                                 <li>
                                     <a href="/" class="sf-with-ul">Home</a>
                                 </li>
+                                <li>
+                                    <a href="" class="sf-with-ul">Shop</a>
+                                    <div class="megamenu megamenu-md">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-8">
+                                                <div class="menu-col">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="menu-title">Shop by Category</div><!-- End .menu-title -->
+                                                            <ul>
+                                                                <li><a href="{% url 'product_men' %}">Men</a></li>
+                                                                <li><a href="category-2cols.html">Women</a></li>
+                                                                <li><a href="category.html">Kids</a></li>
+                                                            </ul>
+
+                                                        </div><!-- End .col-md-6 -->
+
+                                                        <div class="col-md-6">
+                                                            <div class="menu-title">Product Category</div><!-- End .menu-title -->
+                                                            <ul>
+                                                                {% for category in product_subcategory %}
+                                                                <li><a href="product-category-boxed.html">{{ category.product_subcategory }}</a></li>
+                                                            {% endfor %}
+                                                               <!-- <li><a href="product-category-boxed.html">Mens Shirts</a></li>
+                                                                <li><a href="product-category-boxed.html">Mens Trousers</a></li>
+                                                                <li><a href="product-category-boxed.html">Mens Jackets</a></li>
+                                                                <li><a href="product-category-boxed.html">Mens Shoes</a></li>
+                                                                <li><a href="product-category-boxed.html">Womens Tshirts</a></li>
+                                                                <li><a href="product-category-boxed.html">Womens Trousers</a></li>
+                                                                <li><a href="product-category-boxed.html">Womens Sweatshirt and Jackets</a></li>
+                                                                <li><a href="product-category-boxed.html">Womens Footwear</a></li>
+                                                                <li><a href="product-category-boxed.html">Womens Sport Wear</a></li>
+                                                                <li><a href="product-category-boxed.html">Kids </a></li> -->
+
+                                                            </ul>
+                                                        </div><!-- End .col-md-6 -->
+                                                    </div><!-- End .row -->
+                                                </div><!-- End .menu-col -->
+                                            </div><!-- End .col-md-8 -->
+                                            <div class="col-md-4">
+                                                <div class="banner banner-overlay">
+                                                    <a href="category.html" class="banner banner-menu">
+                                                        <img src="/static/assets/images/menu/banner-1.jpg" alt="Banner">
+
+                                                        <div class="banner-content banner-content-top">
+                                                            <div class="banner-title text-white">Last <br>Chance<br><span><strong>Sale</strong></span></div><!-- End .banner-title -->
+                                                        </div><!-- End .banner-content -->
+                                                    </a>
+                                                </div><!-- End .banner banner-overlay -->
+                                            </div><!-- End .col-md-4 -->
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="{% url 'products' %}">Products</a>
+                                </li>
                             </ul>
                         </nav>
-                                   
+                        
                     </div><!-- End .header-right -->
+                        <div class="header-right">
+                            <div class="header-search">
+                                <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+                                <form action="#" method="get">
+                                    <div class="header-search-wrapper">
+                                        <label for="q" class="sr-only">Search</label>
+                                        <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required>
+                                    </div><!-- End .header-search-wrapper -->
+                                </form>
+                            </div><!-- End .header-search -->
+                            <div class="dropdown compare-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static" title="Compare Products" aria-label="Compare Products">
+                                    <i class="icon-random"></i>
+                                </a>
+    
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <ul class="compare-products">
+                                        <li class="compare-product">
+                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
+                                            <h4 class="compare-product-title"><a href="product.html">Blue Night Dress</a></h4>
+                                        </li>
+                                        <li class="compare-product">
+                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
+                                            <h4 class="compare-product-title"><a href="product.html">White Long Skirt</a></h4>
+                                        </li>
+                                    </ul>
+    
+                                    <div class="compare-actions">
+                                        <a href="#" class="action-link">Clear All</a>
+                                        <a href="#" class="btn btn-outline-primary-2"><span>Compare</span><i class="icon-long-arrow-right"></i></a>
+                                    </div>
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .compare-dropdown -->
+    
+                            <div class="dropdown cart-dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">2</span>
+                                </a>
+    
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="dropdown-cart-products">
+                                        <div class="product">
+                                            <div class="product-cart-details">
+                                                <h4 class="product-title">
+                                                    <a href="product.html">Beige knitted elastic runner shoes</a>
+                                                </h4>
+    
+                                                <span class="cart-product-info">
+                                                    <span class="cart-product-qty">1</span>
+                                                    x $84.00
+                                                </span>
+                                            </div><!-- End .product-cart-details -->
+    
+                                            <figure class="product-image-container">
+                                                <a href="product.html" class="product-image">
+                                                    <img src="assets/images/products/cart/product-1.jpg" alt="product">
+                                                </a>
+                                            </figure>
+                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
+                                        </div><!-- End .product -->
+    
+                                        <div class="product">
+                                            <div class="product-cart-details">
+                                                <h4 class="product-title">
+                                                    <a href="product.html">Blue utility pinafore denim dress</a>
+                                                </h4>
+    
+                                                <span class="cart-product-info">
+                                                    <span class="cart-product-qty">1</span>
+                                                    x $76.00
+                                                </span>
+                                            </div><!-- End .product-cart-details -->
+    
+                                            <figure class="product-image-container">
+                                                <a href="product.html" class="product-image">
+                                                    <img src="assets/images/products/cart/product-2.jpg" alt="product">
+                                                </a>
+                                            </figure>
+                                            <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
+                                        </div><!-- End .product -->
+                                    </div><!-- End .cart-product -->
+    
+                                    <div class="dropdown-cart-total">
+                                        <span>Total</span>
+    
+                                        <span class="cart-total-price">$160.00</span>
+                                    </div><!-- End .dropdown-cart-total -->
+    
+                                    <div class="dropdown-cart-action">
+                                        <a href="cart.html" class="btn btn-primary">View Cart</a>
+                                        <a href="checkout.html" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .dropdown-cart-total -->
+                                </div><!-- End .dropdown-menu -->
+                            </div><!-- End .cart-dropdown -->
+                        </div><!-- End .header-right -->
+                                
                 </div><!-- End .container -->
             </div><!-- End .header-middle -->
         </header><!-- End .header -->
