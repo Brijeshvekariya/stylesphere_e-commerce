@@ -16,4 +16,14 @@ urlpatterns = [
     path('seller_index/',views.seller_index,name='seller_index'),
     path('seller_addproduct/',views.seller_addproduct,name='seller_addproduct'),
     path('seller_viewproducts/',views.seller_viewproducts,name='seller_viewproducts'),
+    path('seller_productdetails/<int:pk>/',views.seller_productdetails,name="seller_productdetails"),
+    path('seller_editproduct/<int:pk>/',views.seller_editproduct,name="seller_editproduct"),
+    path('seller_deleteproduct/<int:pk>/',views.seller_deleteproduct,name="seller_deleteproduct"),
+    path('seller_viewmen/',views.seller_viewmen,name="seller_viewmen"),
+    path('seller_viewwomen/',views.seller_viewwomen,name="seller_viewwomen"),
+    path('seller_viewkids/',views.seller_viewkids,name="seller_viewkids"),
+    path('product_details/<int:pk>/',views.product_details,name="product_details"),
+    path('products/',views.products,name="products"),
+    path('product_men/',views.product_men,name="product_men"),
+
 ]

@@ -4,7 +4,10 @@ import random,requests
 
 # Create your views here.
 def index(request):
-    return render(request,'index.html')
+    products = Product.objects.all()
+    return render(request,'index.html',{"products":products})
+
+
 
 def login(request):
     if request.method=="POST":
@@ -16,7 +19,7 @@ def login(request):
             request.session['email']=user.email
             request.session['username']=user.username
             msg = " Login Successfull !"
-            return render(request,'index.html',{'msg':msg})
+            return render(request,'user_index.html',{'msg':msg})
         except:
             try:
                 seller = Seller.objects.get(
@@ -32,6 +35,8 @@ def login(request):
                 return render(request,'login.html',{'msg1':msg1})
     else:
         return render(request,'login.html')
+    
+
     
 def logout(request):
     try:
@@ -187,3 +192,68 @@ def seller_viewproducts(request):
     seller=Seller.objects.get(email = request.session['email'])
     products=Product.objects.filter(seller=seller)
     return render(request,"seller_viewproducts.html",{"products":products,"seller":seller})
+
+def seller_productdetails(request,pk):
+    product = Product.objects.get(pk=pk)
+    return render(request,"seller_productdetails.html", {"product":product})
+
+
+def seller_editproduct(request,pk):
+    seller=Seller.objects.get(email=request.session['email'])
+    product=Product.objects.get(pk=pk)
+    if request.method=="POST":
+        product.product_category=request.POST['product_category'],
+        product.product_subcategory = request.POST['product_subcategory'.title()],
+        product.product_name=request.POST['product_name'.title()],
+        product.product_price=request.POST['product_price'],
+        product.product_discount=request.POST['product_discount'],
+        product.product_desc=request.POST['product_desc'.capitalize()],
+        try:
+            product.product_image=request.FILES['product_image'],
+            product.product_image_2=request.FILES['product_image_2'],
+            product.product_image_3=request.FILES['product_image_3'],
+        except:
+            pass
+        product.save()
+        msg="Product Edited Successfully"
+        return render(request,'seller_editproduct.html',{'product':product,'msg':msg})
+    else:
+        return render(request,'seller_editproduct.html',{'product':product})
+    
+def seller_deleteproduct(request,pk):
+    product=Product.objects.get(pk=pk)
+    product.delete()
+    return redirect('seller_viewproduct')
+
+def seller_viewmen(request):
+     seller=Seller.objects.get(email=request.session['email'])
+     products=Product.objects.filter(seller=seller,product_category="Men")
+     men = True
+     return render(request,'seller_viewproducts.html',{'products':products,"men":men})
+
+
+def seller_viewwomen(request):
+     seller=Seller.objects.get(email=request.session['email'])
+     products=Product.objects.filter(seller=seller,product_category="Women")
+     women = True
+     return render(request,'seller_viewproducts.html',{'products':products,"women":women})
+
+
+def seller_viewkids(request):
+     seller=Seller.objects.get(email=request.session['email'])
+     kids = True
+     products=Product.objects.filter(seller=seller,product_category="Kids")
+     return render(request,'seller_viewproducts.html',{'products':products,"kids":kids})
+
+
+def product_details(request,pk):
+    product = Product.objects.get(pk=pk)
+    return render(request,'product_details.html',{'product':product})
+
+def products(request):
+    products = Product.objects.all()
+    return render(request,'product.html',{"products":products})
+
+def product_men(request):
+    product_men = Product.objects.get(product_category="Men")
+    return render(request,'product.html',{"product_men":product_men})
