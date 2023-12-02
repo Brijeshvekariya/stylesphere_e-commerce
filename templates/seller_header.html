@@ -48,7 +48,7 @@
                                     <li><a href="about.html">About Us</a></li>
                                     <li><a href="contact.html">Contact Us</a></li>
                                     {% if request.session.email %}
-                                    <li><a href="{% url 'logout' %}"><i class="icon-user"></i>Loguot</a></li>
+                                    <li><a href="{% url 'logout' %}"><i class="icon-user"></i>Logout</a></li>
                                     {% else %}
                                     <li><a href="{% url 'login' %}"><i class="icon-user"></i>Login</a></li>
                                     {% endif %}
@@ -67,7 +67,7 @@
                             <i class="icon-bars"></i>
                         </button>
 
-                        <a href="/" class="logo">
+                        <a href="{% url 'seller_index' %}" class="logo">
                             <img src="/static/assets/images/logo.png" alt="Molla Logo" width="105" height="25">
                         </a>
 

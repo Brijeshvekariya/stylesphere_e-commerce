@@ -36,48 +36,63 @@
 							<strong>Success</strong>{{ msg }}
 						</div>
 						{% endif %}
-							<form action="{% url 'seller_addproduct' %}" method="post" enctype="multipart/form-data">
+							<form action="{% url 'seller_editproduct' pk=product.pk %}" method="post" enctype="multipart/form-data">
 								{% csrf_token %}
 								<div class="form-group">
-									<select name="product_category" id="" class="form-control" style="width: 456px;">Product Catergory
+                                    <select name="product_category" id="" class="form-control" style="width: 456px;">Product Catergory
+                                        {% if product.product_category == "Men"%}
                                         <option value="None">Select Product Category</option>
-                                        <option value="Men">Men</option>
+                                        <option value="Men" selected>Men</option>
                                         <option value="Women">Women</option>
                                         <option value="Kids">Kids</option>
+                                        {% elif product.product_category == "Women"%}
+                                        <option value="None">Select Product Category</option>
+                                        <option value="Men" >Men</option>
+                                        <option value="Women" selected>Women</option>
+                                        <option value="Kids">Kids</option>
+                                        {% elif product.product_category == "Kids"%}
+                                        <option value="None">Select Product Category</option>
+                                        <option value="Men" >Men</option>
+                                        <option value="Women">Women</option>
+                                        <option value="Kids" selected>Kids</option>
+                                        {% endif %}
                                     </select>
 								</div><!-- End .form-group -->
 								<div class="form-group">
 									<label for="product_subcategory">Product Subcategory *</label>
-									<input type="text" class="form-control" id="product_subcategory" name="Product_Subcategory" required>
+									<input type="text" class="form-control" id="product_subcategory" name="Product_Subcategory" value="{{product.product_subcategory}}" required>
 								</div><!-- End .form-group -->
 								<div class="form-group">
 									<label for="product_name">Your Product Name *</label>
-									<input type="text" class="form-control" id="product_name" name="Product_Name" required>
+									<input type="text" class="form-control" id="product_name" name="Product_Name" value="{{product.product_name}}" required>
 								</div><!-- End .form-group -->
 								<div class="form-group">
 									<label for="product_price">Your Product Price *</label>
-									<input type="tel" class="form-control" id="product_price" name="product_price" required>
+									<input type="tel" class="form-control" id="product_price" name="product_price" value="{{product.product_price}}" required>
 								</div><!-- End .form-group -->
 								<div class="form-group">
 									<label for="product_discount">Your Product Price Discount*</label>
-									<input type="tel" class="form-control" id="product_discount" name="product_discount" required>
+									<input type="tel" class="form-control" id="product_discount" name="product_discount" value="product.product_discount" required>
 								</div><!-- End .form-group -->
 
 								<div class="form-group">
 									<label for="product_desc">Your Product Description *</label>
-									<input type="text" class="form-control" id="product_desc" name="Product_desc" required>
+									<input type="text" class="form-control" id="product_desc" name="Product_desc" value="product.product_desc" required>
 								</div><!-- End .form-group -->
+                                <img src="{{product.product_image.url}}" alt="">
 								<div class="form-group">
 									<label for="product_image">Upload Product Image *</label>
 									<input type="file" class="form-control" id="product_image" name="product_image" required>
 								</div><!-- End .form-group -->
+                                <img src="{{product.product_image_2.url}}" alt="">
 								<div class="form-group">
 									<label for="product_image_2">Upload Product Image *</label>
 									<input type="file" class="form-control" id="product_image_2" name="product_image_2" required>
 								</div><!-- End .form-group -->
+                                <img src="{{product.product_image_3.url}}" alt="">
 								<div class="form-group">
 									<label for="product_image_3">Upload Product Image *</label>
-									<input type="file" class="form-control" id="product_image_3" name="product_image_3">
+									<input type="file" class="form-control" id="product_image_3" name="product_image_3" required>
 								</div><!-- End .form-group -->
 
 								<div class="form-footer">
