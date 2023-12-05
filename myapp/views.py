@@ -19,7 +19,7 @@ def login(request):
             request.session['email']=user.email
             request.session['username']=user.username
             msg = " Login Successfull !"
-            return render(request,'user_index.html',{'msg':msg})
+            return render(request,'index.html',{'msg':msg})
         except:
             try:
                 seller = Seller.objects.get(
@@ -30,7 +30,8 @@ def login(request):
                 request.session['username'] = seller.username
                 msg = " Login Successfull ! "
                 return render(request,'seller_index.html',{'msg':msg})
-            except:
+            except Exception as e:
+                print(e)
                 msg1=" Invalid Email or Password !"
                 return render(request,'login.html',{'msg1':msg1})
     else:
