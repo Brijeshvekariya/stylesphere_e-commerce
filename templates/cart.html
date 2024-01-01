@@ -7,6 +7,7 @@
 
 <!-- molla/cart.html  22 Nov 2019 09:55:06 GMT -->
 <head>
+	<script src="https://js.stripe.com/v3/"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -157,7 +158,7 @@
 	                					</tbody>
 	                				</table><!-- End .table table-summary -->
 
-	                				<a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+	                				<a id="checkout-button" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
 	                			</div><!-- End .summary -->
 
 		            			<a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
@@ -167,6 +168,36 @@
                 </div><!-- End .cart -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
+		<script type="text/javascript">
+			var stripe=Stripe('pk_test_51OJUOESDeydzQl395kHJwZysfhW3KO5pvaW6UGhyc6UF44Aa95uc1IAGSayZJapBwfIyZdgTs94w86se4f5fzLMn00dFNsNMRF');
+
+			var checkoutButton=document.getElementById('checkout-button');
+
+			checkoutButton.addEventListener('click',function(){
+				fetch('/create-checkout-session/',{
+					method:'POST',
+					headers:{
+						'Accept':'application/json',
+						'X-Requested-With':'XMLHttpRequest',
+					},
+					body:JSON.stringify({'post_data':'{{net_price}}'})
+				})
+			.then(function(response){
+				return response.json();
+			})
+			.then(function(session){
+				return stripe.redirectToCheckout({sessionId:session.id});
+			})
+			.then(function(result){
+				if(result.error){
+					alert(result.error.message);
+				}
+			})
+			.catch(function(error){
+				console.error('Error:',error);
+			});
+			});
+	</script>
 
 
 </body>

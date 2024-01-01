@@ -56,3 +56,22 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_category+" "+self.product_subcategory+" "+self.product_name
+    
+class Wishlist(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username+" - "+self.product.product_name
+
+
+class Cart(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+    product_price=models.PositiveIntegerField()
+    product_qty=models.PositiveIntegerField(default=1)
+    total_price=models.PositiveIntegerField()
+    payment_status=models.BooleanField(default=False)
+
+    def __str__(self):
+           return self.user.username+" - "+self.product.product_name

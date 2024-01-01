@@ -23,7 +23,17 @@ urlpatterns = [
     path('seller_viewwomen/',views.seller_viewwomen,name="seller_viewwomen"),
     path('seller_viewkids/',views.seller_viewkids,name="seller_viewkids"),
     path('product_details/<int:pk>/',views.product_details,name="product_details"),
+    path('add_to_wishlist/<int:pk>/',views.add_to_wishlist,name="add_to_wishlist"),
     path('products/',views.products,name="products"),
     path('product_men/',views.product_men,name="product_men"),
+    path('wishlist/',views.wishlist,name="wishlist"),
+    path('remove_from_wishlist/<int:pk>/',views.remove_from_wishlist,name="remove_from_wishlist"),
+    path('add_to_cart/<int:pk>/',views.add_to_cart,name="add_to_cart"),
+    path('cart/',views.cart,name='cart'),
+    path('remove_from_cart/<int:pk>/',views.remove_from_cart,name="remove_from_cart"),
+    path('change_qty/',views.change_qty,name="change_qty"),
+    path('create-checkout-session/',views.create_checkout_session,name='payment'),
+   path('success.html/',views.success,name='success'),
+   path('cancel.html/',views.cancel,name='cancel'),
 
 ]

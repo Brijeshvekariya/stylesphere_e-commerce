@@ -69,9 +69,9 @@
                                                         <div class="col-md-6">
                                                             <div class="menu-title">Product Category</div>
                                                             <ul>
-                                                                <!-- {% for category in product_subcategory %}
+                                                                {% for category in product_subcategory %}
                                                                     <li><a href="product-category-boxed.html">{{ category.product_subcategory }}</a></li>
-                                                                {% endfor %} -->
+                                                                {% endfor %}
                                                                <!-- <li><a href="product-category-boxed.html">Mens Shirts</a></li>
                                                                 <li><a href="product-category-boxed.html">Mens Trousers</a></li>
                                                                 <li><a href="product-category-boxed.html">Mens Jackets</a></li>
@@ -140,6 +140,11 @@
                             <span class="wishlist-count">3</span>
                         </a>
                         
+                        <a href="{% url 'cart' %}" class="wishlist-link">
+                            <i class="icon-shopping-cart"></i>
+                            <span class="wishlist-count">{{request.session.cart_count}}</span>
+                        </a>
+                        
                         {% if request.session.email %}
                         <div class="dropdown cart-dropdown">
                             <a href="#" class="dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
@@ -160,8 +165,6 @@
                                             </h4>   
                                     </div><!-- End .product -->
                                 </div><!-- End .cart-product -->
-
-
                                 
                                 <div class="dropdown-cart-action">
                                     <a href="{% url 'logout'%}" class="btn btn-primary">Log-out</a>
@@ -171,70 +174,7 @@
                         {% else %}
                         <li><a href="{% url 'login' %}"><i class="icon-user" style="font-size: 30px;"></i></a></li>
                         {% endif %}
-                        <div class="dropdown cart-dropdown">
-                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                                <i class="icon-shopping-cart"></i>
-                                <span class="cart-count">2</span>
-                            </a>
-                            
-
-                            <div class="dropdown-menu dropdown-menu-right">
-                                {% if request.session.email %}
-                                <div class="dropdown-cart-products">
-                                    <div class="product">
-                                        <div class="product-cart-details">
-                                            <h4 class="product-title">
-                                                <a href="product.html">Beige knitted elastic runner shoes</a>
-                                            </h4>
-
-                                            <span class="cart-product-info">
-                                                <span class="cart-product-qty">1</span>
-                                                x $84.00
-                                            </span>
-                                        </div><!-- End .product-cart-details -->
-
-                                        <figure class="product-image-container">
-                                            <a href="product.html" class="product-image">
-                                                <img src="/static/assets/images/products/cart/product-1.jpg" alt="product">
-                                            </a>
-                                        </figure>
-                                        <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                    </div><!-- End .product -->
-
-                                    <div class="product">
-                                        <div class="product-cart-details">
-                                            <h4 class="product-title">
-                                                <a href="product.html">Blue utility pinafore denim dress</a>
-                                            </h4>
-
-                                            <span class="cart-product-info">
-                                                <span class="cart-product-qty">1</span>
-                                                x $76.00
-                                            </span>
-                                        </div><!-- End .product-cart-details -->
-
-                                        <figure class="product-image-container">
-                                            <a href="product.html" class="product-image">
-                                                <img src="/static/assets/images/products/cart/product-2.jpg" alt="product">
-                                            </a>
-                                        </figure>
-                                        <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                    </div><!-- End .product -->
-                                </div><!-- End .cart-product -->
-
-                                <div class="dropdown-cart-total">
-                                    <span>Total</span>
-
-                                    <span class="cart-total-price">$160.00</span>
-                                </div><!-- End .dropdown-cart-total -->
-
-                                <div class="dropdown-cart-action">
-                                    <a href="cart.html" class="btn btn-primary">View Cart</a>
-                                    <a href="checkout.html" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
-                                </div><!-- End .dropdown-cart-total -->
-                                {% endif %}
-                            </div><!-- End .dropdown-menu -->
-                        </div><!-- End .cart-dropdown -->
+                        
                     </div><!-- End .header-right -->
                 </div><!-- End .container -->
             </div><!-- End .header-middle -->
@@ -440,8 +380,8 @@
                             <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
 
                             <ul class="widget-list">
-                                <li><a href="cart.html">View Cart</a></li>
-                                <li><a href="#">My Wishlist</a></li>
+                                <li><a href="{% url 'cart' %}">View Cart</a></li>
+                                <li><a href="{% url 'wishlist' %}">My Wishlist</a></li>
                                 <li><a href="#">Track My Order</a></li>
                                 <li><a href="#">Help</a></li>
                                 {% if request.session.email %}
@@ -494,9 +434,9 @@
                         <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
                         <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
                         <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
-                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="{% url 'cart' %}">Cart</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
                         <li><a href="#">Lookbook</a></li>
                     </ul>
                 </li>
